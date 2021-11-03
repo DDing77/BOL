@@ -1,0 +1,4 @@
+node_modules
+db_info.js
+dist
+.env
