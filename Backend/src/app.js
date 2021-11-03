@@ -11,5 +11,5 @@ app.get('/', (req,res) => {
 })
 
 app.listen(PORT, ()=>{
-    console.log(`server running on PORT ${PORT}`);
+    console.log(`서버시작 server running on PORT  ${PORT}`);
 })
