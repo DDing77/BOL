@@ -43,5 +43,8 @@
         "@babel/plugin-syntax-dynamic-import"
       ]
     ]
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
