@@ -20,13 +20,15 @@
     "@babel/plugin-transform-runtime": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "@babel/runtime-corejs3": "^7.16.0",
+    "dotenv": "^10.0.0",
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.14",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "prisma": "^3.4.0"
   },
   "babel": {
     "presets": [
@@ -45,6 +47,18 @@
     ]
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "@babel/runtime": "^7.16.0",
+    "@prisma/client": "^3.4.0",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "debug": "^4.3.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "http-errors": "^1.8.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.3",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0"
   }
 }
