@@ -1,16 +1,34 @@
-const express = require('express');
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import express from 'express';
+import session from 'express-session';
+import logger from 'morgan';
+import passport from 'passport';
+import env from '../config';
+import passportSession from '../config/Passport/index';
+import UserController from './controllers/UserController';
+
 const app = express();
-const PORT = 5000;
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(
+  session({
+    secret: env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
-app.get('/', (req,res) => {
-    const data = {
-        lastname : "mg",
-        firstname : "s"
-    };
-    res.json(data);
-})
+app.use(cookieParser(env.COOKIE_SECRET));
+passportSession(passport);
 
-app.listen(PORT, ()=>{
-    console.log(`서버시작 server running on PORT  ${PORT}`);
-    console.log(`server running on PORT ${PORT}`);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/api/users',UserController);
+
+app.listen(env.PORT, ()=>{
+    console.log('서버시작');
 })
