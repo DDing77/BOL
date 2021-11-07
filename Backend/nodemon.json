@@ -1,0 +1,10 @@
+{
+    "events": {
+      "restart": "kill-port 4000",
+      "crash": "kill-port 4000"
+    },
+      "watch": [
+        "src/*"
+      ],
+      "exec": "npx babel-node ./src/index"
+  }

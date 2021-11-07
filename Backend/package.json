@@ -1,0 +1,65 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Back-End",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "dev": "npx nodemon ./src/app.js --exec babel-node",
+    "build": "babel src -d dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/runtime-corejs3": "^7.16.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.14",
+    "prettier": "^2.4.1",
+    "prisma": "^3.4.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/env"
+      ]
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "corejs": 3
+        },
+        "@babel/plugin-syntax-dynamic-import"
+      ]
+    ]
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.16.0",
+    "@prisma/client": "^3.4.1",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "debug": "^4.3.2",
+    "express": "^4.17.1",
+    "express-generator": "^4.16.1",
+    "express-session": "^1.17.2",
+    "http-errors": "^1.8.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.3",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0"
+  }
+}

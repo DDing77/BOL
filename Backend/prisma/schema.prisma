@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// ? -> null 값 허용
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique @db.VarChar(20)
+  name     String    @unique @db.VarChar(30)
+  password String    @db.VarChar(200)
+  createAt DateTime  @default(now())
+  updateAt DateTime? @updatedAt
+  isAdmin  Int       @default(0) // admin일 경우 
+  comment  Comment[]
+
+  @@map(name: "users")
+}
+
+model Game {
+  id       Int      @id @default(autoincrement())
+  name     String   @unique @db.VarChar(30)
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  photos   Photo[]
+}
+
+model Photo {
+  id           Int      @id @default(autoincrement())
+  name         String   @unique @db.VarChar(20)
+  path         String   @unique @db.VarChar(20)
+  game         Game     @relation(fields: [gameId], references: [id])
+  gameId       Int
+  categoryName String
+  win          Int      @default(0)
+  champion     Int      @default(0)
+  createAt DateTime  @default(now())
+  updateAt DateTime? @updatedAt
+  @@map("phosts")
+}
+
+// model Category {
+//   name   String  @id
+//   photos Photo[]
+
+//   @@map("categorys")
+// }
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.Text
+  createAt  DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  commenter User     @relation(fields: [userId], references: [id])
+  userId    Int
+
+  @@map("comment")
+}
