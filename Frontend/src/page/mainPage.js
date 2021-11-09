@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Logout } from "../auth/login/logout";
+import { Logout } from "../auth/controller/logout";
 export default function MainPage() {
   return (
     <>
@@ -10,7 +10,7 @@ export default function MainPage() {
           SignIn
         </Link>
       </button>
-      <button onclick={Logout.Logout}>Logout</button>
+      <button onClick={Logout.Logout}>Logout</button>
       <button>
         <Link to="/make">게임 만들기</Link>
       </button>
