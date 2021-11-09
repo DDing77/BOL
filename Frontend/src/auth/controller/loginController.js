@@ -20,7 +20,7 @@ export const onLoginHandler = (data) => {
           console.log(res);
           console.log("res.data.email :: ", res.data.email);
           console.log("res.data.password :: ", res.data.password);
-          if (res.data.email === data.Email) {
+          if (res.data.email === body.email) {
             console.log("====================로그인 성공!");
             sessionStorage.setItem("user", JSON.stringify(true));
             // props.history.push(`/personal/${res.data.id}`);
