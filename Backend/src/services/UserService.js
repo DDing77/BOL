@@ -41,6 +41,20 @@ export const Login = (req, res, next) => {
     })(req, res, next);
   };
 
+  //로그아웃. 성공시 success:true 전달
+export const Logout = (req, res, next) => {
+  req.logOut();
+  req.session.destroy(err => {
+    if (err) {
+      console.error(err);
+      return next(err);
+    } else {
+      //connect.sid : 고유식별자 --> 고유식별자 쿠키에서 지우겠다는 의미.
+      return res.clearCookie('connect.sid').status(200).send({ success: true });
+    }
+  });
+};
+
 //유저정보 다 끌어오는거. 임시용
 export const UserInfo = async (req, res, next) => {
     try {
