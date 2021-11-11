@@ -1,5 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 
 // 로그인 요청
 export const onLoginHandler = (data) => {
@@ -24,8 +26,8 @@ export const onLoginHandler = (data) => {
       if (res.data.email === body.email) {
         console.log("====================로그인 성공!");
         sessionStorage.setItem("user", JSON.stringify(true));
-        // props.history.push(`/personal/${res.data.id}`);
-        window.location.reload();
+        // // props.history.push(`/personal/${res.data.id}`);
+        // window.location.href = "/";
       } else {
         alert("Login error");
       }
@@ -34,14 +36,17 @@ export const onLoginHandler = (data) => {
 };
 
 // 로그아웃
-export const Logout = () => {
+export const Logout = (navigate) => {
+  
+
   axios.get("/api/users/logout").then((req, res) => {
     console.log("===로그아웃 시작==");
     console.log(req.data);
     if (req.data) {
       console.log("============세션 지우기 성공");
       sessionStorage.clear();
-      window.location.href = "/";
+      // window.location.href = "/";
+      navigate("/");
     }
   });
 };

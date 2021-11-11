@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { withRouter } from "react-router-dom";
-import * as Login from "../auth/controller/loginController";
+import { useNavigate } from "react-router-dom";
+  import * as Login from "../auth/controller/loginController";
 
 function LoginForm(props) {
+  let navigate = useNavigate();
   const [state, setState] = useState({
     email: "",
     password: "",
   });
   const {register,handleSubmit,formState: { errors }} = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setState(data);
     console.log(data);
-    Login.onLoginHandler(data);
+    await Login.onLoginHandler(data);
+    navigate("/");
   };
   console.log("로그인폼 렌더링");
 
