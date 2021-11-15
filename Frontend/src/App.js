@@ -2,7 +2,6 @@ import "./App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import IsLogin from "./auth/isLogin";
 import isLogin from "./auth/isLogin";
 import { loginCheck } from "./store/actions/user_action";
 
@@ -20,22 +19,18 @@ function App() {
   let authenticated = isLogin();
 
   useEffect(() => {
-    // if (authenticated == false && isLoginState.isLogin == true) {
     // 세션에 유저정보가 있으면 진행
     authenticated = isLogin();
     if (authenticated) {
       console.log("프로필요청");
       dispatch(loginCheck()); // 세션에 있는 유저의 프로필 정보를 가져옴
     }
-    // } else if (authenticated == true && isLogin.isLogin == false) {
-
-    // }
   }, [isLoginState.isLogin]);
 
   console.log(isLoginState);
   console.log("app");
   console.log("auth : " + authenticated);
-  console.log("isLogin : " + IsLogin());
+  console.log("isLogin : " + isLogin());
   console.log(
     "sessionStorage.user : " + JSON.parse(sessionStorage.getItem("user"))
   );
