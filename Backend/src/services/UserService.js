@@ -36,7 +36,7 @@ export const Login = (req, res, next) => {
           console.error(err);
           return next('에러가 발생하였습니다.');
         }
-        return res.send(user);
+        return res.send({user, success: true});
       });
     })(req, res, next);
   };
