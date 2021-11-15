@@ -1,30 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import * as Login from "../auth/controller/loginController";
-import axios from "axios";
+import * as UserController from "../auth/controller/userController";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function MainHeader() {
+  const dispatch = useDispatch();
   let navigate = useNavigate(); // 권한체크로 로직변경하자
 
-  const [state, setState] = useState("");
-
-  useEffect(() => {
-    console.log("프로필요청")
-    
-    axios.get("/api/users/profile").then((req, res) => setState(req.data));
-  }, [navigate]);
-
-  
+  const user = useSelector((store) => store.user);
+  console.log(user);
   // console.log(navigate);
   return (
-    <div>
-        {state.name}님 반갑습니다!
-      <button>
-        <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
-          SignIn
-        </Link>
-      </button>
-      <button onClick={()=> Login.Logout(navigate)}>Logout</button>
-    </div>
-  );    
+    <>
+      {!user.isLogin ? (
+        <div>
+          <button>
+            <Link
+              to="/login"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              SignIn
+            </Link>
+          </button>
+          <button>
+            <Link
+              to="/register"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              SignUp
+            </Link>
+          </button>
+        </div>
+      ) : (
+        <div>
+          {user.user.name} 님 반갑습니다!{" "}
+          <button onClick={() => UserController.Logout(dispatch, navigate)}>
+            Logout
+          </button>
+        </div>
+      )}
+    </>
+  );
 }
