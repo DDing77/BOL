@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import LoginForm from "../components/loginForm";
 
 function LoginPage(props) {
