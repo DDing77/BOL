@@ -5,7 +5,7 @@ import {
   REGISTER_USER,
 } from "../actions/types";
 
-const userstate = { isLogin: false, user: null, registerSuccess: null };
+const userstate = { isLogin: false, user: null, registerSuccess: false };
 const userReducer = (state = userstate, action) => {
   switch (action.type) {
     case LOGIN_USER:
