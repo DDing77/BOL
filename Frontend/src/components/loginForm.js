@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // import * as cont\ from "../auth/controller/loginController";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../store/actions/user_action";
+import { Login } from "../auth/controller/userController";
 
 function LoginForm(props) {
   let navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [state, setState] = useState({
-    email: "",
-    password: "",
-  });
 
   const {
     register,
@@ -20,34 +15,15 @@ function LoginForm(props) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    setState(data);
+  const submitForm = (data) => {
     console.log(data);
-
-    let body = {
-      email: data.Email,
-      password: data.Password,
-    };
-
-    dispatch(loginUser(body))
-      .then((res) => {
-        console.log(res.payload);
-        if (res.payload.success) {
-          console.log("===로그인 성공!===");
-          sessionStorage.setItem("user", JSON.stringify(res.payload.user.name));
-        } else {
-          alert("로그인 실패");
-        }
-      })
-      .catch();
-    // await LoginHandler(data);
-    navigate("/");
+    Login(dispatch, navigate, data);
   };
 
   console.log("로그인폼 렌더링");
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(submitForm)}>
       <label htmlFor="email">Email</label>
       <input
         name="email"
