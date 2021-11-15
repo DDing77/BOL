@@ -1,21 +1,49 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-  import * as Login from "../auth/controller/loginController";
+// import * as cont\ from "../auth/controller/loginController";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../store/actions/user_action";
 
 function LoginForm(props) {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({
     email: "",
     password: "",
   });
-  const {register,handleSubmit,formState: { errors }} = useForm();
-  const onSubmit = async (data) => {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
     setState(data);
     console.log(data);
-    await Login.onLoginHandler(data);
+
+    let body = {
+      email: data.Email,
+      password: data.Password,
+    };
+
+    dispatch(loginUser(body))
+      .then((res) => {
+        console.log(res.payload);
+        if (res.payload.email === body.email) {
+          console.log("===로그인 성공!===");
+          sessionStorage.setItem("user", JSON.stringify(res.payload.name));
+        } else {
+          alert("로그인 실패");
+        }
+      })
+      .catch();
+    // await LoginHandler(data);
     navigate("/");
   };
+
   console.log("로그인폼 렌더링");
 
   return (
