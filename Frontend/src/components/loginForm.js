@@ -32,9 +32,9 @@ function LoginForm(props) {
     dispatch(loginUser(body))
       .then((res) => {
         console.log(res.payload);
-        if (res.payload.email === body.email) {
+        if (res.payload.success) {
           console.log("===로그인 성공!===");
-          sessionStorage.setItem("user", JSON.stringify(res.payload.name));
+          sessionStorage.setItem("user", JSON.stringify(res.payload.user.name));
         } else {
           alert("로그인 실패");
         }
@@ -48,7 +48,7 @@ function LoginForm(props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="name">Name</label>
+      <label htmlFor="email">Email</label>
       <input
         name="email"
         type="email"

@@ -9,7 +9,8 @@ const userstate = { isLogin: false, user: null, registerSuccess: null };
 const userReducer = (state = userstate, action) => {
   switch (action.type) {
     case LOGIN_USER:
-      return { ...state, isLogin: true, user: action.payload };
+      if(action.payload.success)return { ...state, isLogin: true, user: action.payload };
+      else return {...state};
     case LOGOUT_USER:
       return { ...state, isLogin: false, user: null };
     case LOGIN_CHECK:
