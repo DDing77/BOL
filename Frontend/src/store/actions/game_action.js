@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { START_GAME } from "./types";
 
 export const startGame = (dataToSumit) => {
@@ -16,14 +16,18 @@ export const startGame = (dataToSumit) => {
     gameId: 1,
     base: base.sort(() => Math.random() - Math.random()),
   };
-
+  console.log("base 랜덤정렬");
   console.log(base);
-  
+
   return {
     type: START_GAME,
     payload: request,
   };
 };
+
+export const round32 = () => {
+
+}
 
 const base = [
   {
