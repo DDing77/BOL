@@ -10,6 +10,7 @@ import MainPage from "./page/mainPage";
 import LoginPage from "./page/loginPage";
 import RegisterPage from "./page/registerPage";
 import GameMakePage from "./page/gameMakePage";
+import GamePage from "./page/gamePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/register" element={<RegisterPage />} />
         <Route exact path="/make" element={<GameMakePage />} />
+        <Route  path="/game/:id" element={<GamePage />} />
       </Routes>
     </BrowserRouter>
   );
