@@ -19,7 +19,7 @@ const gameReducer = (state = gamestate, action) => {
         ...state,
         gameId: action.payload.gameId,
         base: action.payload.base,
-        view: [action.payload.base[0], action.payload.base[1]],
+        views: [action.payload.base[0], action.payload.base[1]],
       };
     default:
       return state;
