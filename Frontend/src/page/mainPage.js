@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function MainPage() {
+  const allState = useSelector(store=> store);
   console.log("메인화면");
-
-  {/* 테스트 */}
+  console.log(allState);
+  
+ // 테스트 
   const gameInfo = {
     gameId: "1",
     name: "여자아이돌 월드컵",
