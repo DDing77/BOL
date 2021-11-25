@@ -1,5 +1,15 @@
 // import axios from "axios";
-import { START_GAME } from "./types";
+import {
+  ROUND16_1_7,
+  ROUND16_8,
+  ROUND8_1_3,
+  ROUND8_4,
+  ROUND4_1,
+  ROUND4_2,
+  ROUND_FINAL,
+  GAME_RESET,
+  START_GAME,
+} from "./types";
 
 export const startGame = (dataToSumit) => {
   // gameId로 요청
@@ -25,8 +35,124 @@ export const startGame = (dataToSumit) => {
   };
 };
 
-export const round32 = () => {
+export const round16_1_7 = (round8, id, gameState) => {
+  const new_round8 = round8.slice();
 
+  new_round8.push(gameState.base.find((item) => item.id === id));
+
+  const request = {
+    round8: new_round8,
+  };
+
+  console.log(request);
+
+  return {
+    type: ROUND16_1_7,
+    payload: request,
+  };
+};
+
+export const round16_8 = (round8, id, gameState) => {
+  const new_round8 = round8.slice();
+
+  new_round8.push(gameState.base.find((item) => item.id === id));
+
+  const request = {
+    round8: new_round8,
+  };
+
+  console.log(request);
+
+  return {
+    type: ROUND16_8,
+    payload: request,
+  };
+};
+
+export const round8_1_3 = (round4, id, gameState) => {
+
+  const new_round4 = round4.slice();
+
+  new_round4.push(gameState.base.find((item) => item.id === id));
+
+  const request = {
+    round4: new_round4,
+  };
+
+  console.log(request);
+
+  return {
+    type: ROUND8_1_3,
+    payload: request,
+  };
+};
+
+export const round8_4 = (round4, id, gameState) => {
+
+  const new_round4 = round4.slice();
+
+  new_round4.push(gameState.base.find((item) => item.id === id));
+
+  const request = {
+    round4: new_round4,
+  };
+
+  console.log(request);
+
+  return {
+    type: ROUND8_4,
+    payload: request,
+  };
+};
+
+export const round4_1 = (round2, id, gameState) => {
+  const new_round2 = round2.slice();
+
+  new_round2.push(gameState.base.find((item) => item.id === id));
+
+  const request = {
+    round2: new_round2,
+  };
+
+  console.log(request);
+
+  return {
+    type: ROUND4_1,
+    payload: request,
+  };
+};
+
+export const round4_2 = (round2, id, gameState) => {
+  const new_round2 = round2.slice();
+
+  new_round2.push(gameState.base.find((item) => item.id === id));
+
+  const request = {
+    round2: new_round2,
+  };
+
+  console.log(request);
+
+  return {
+    type: ROUND4_2,
+    payload: request,
+  };
+};
+
+export const final_game= (id,gameState) => {
+  const request = gameState.base.find((item) => item.id === id)
+  console.log(request)
+  return{
+    type:ROUND_FINAL,
+    payload:request,
+  }
+}
+
+export const game_reset = () => {
+  
+  return{
+    type:GAME_RESET
+  }
 }
 
 const base = [
