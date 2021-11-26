@@ -14,18 +14,21 @@ CREATE TABLE `users` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Game` (
+CREATE TABLE `games` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(30) NOT NULL,
+    `title` VARCHAR(30) NOT NULL,
+    `description` VARCHAR(30) NOT NULL,
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updateAt` DATETIME(3) NOT NULL,
+    `userId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `Game_name_key`(`name`),
+    UNIQUE INDEX `games_title_key`(`title`),
+    UNIQUE INDEX `games_description_key`(`description`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `phosts` (
+CREATE TABLE `images` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(20) NOT NULL,
     `path` VARCHAR(20) NOT NULL,
@@ -36,13 +39,13 @@ CREATE TABLE `phosts` (
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updateAt` DATETIME(3) NULL,
 
-    UNIQUE INDEX `phosts_name_key`(`name`),
-    UNIQUE INDEX `phosts_path_key`(`path`),
+    UNIQUE INDEX `images_name_key`(`name`),
+    UNIQUE INDEX `images_path_key`(`path`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `comment` (
+CREATE TABLE `comments` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `content` TEXT NOT NULL,
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -53,7 +56,10 @@ CREATE TABLE `comment` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `phosts` ADD CONSTRAINT `phosts_gameId_fkey` FOREIGN KEY (`gameId`) REFERENCES `Game`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `games` ADD CONSTRAINT `games_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `comment` ADD CONSTRAINT `comment_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `images` ADD CONSTRAINT `images_gameId_fkey` FOREIGN KEY (`gameId`) REFERENCES `games`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `comments` ADD CONSTRAINT `comments_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

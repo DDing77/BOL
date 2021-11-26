@@ -19,31 +19,38 @@ model User {
   createAt DateTime  @default(now())
   updateAt DateTime? @updatedAt
   isAdmin  Int       @default(0) // admin일 경우 
+  game     Game[]
   comment  Comment[]
 
   @@map(name: "users")
 }
 
 model Game {
-  id       Int      @id @default(autoincrement())
-  name     String   @unique @db.VarChar(30)
-  createAt DateTime @default(now())
-  updateAt DateTime @updatedAt
-  photos   Photo[]
+  id          Int      @id @default(autoincrement())
+  title       String   @unique @db.VarChar(30)
+  description String   @unique@db.VarChar(30)
+  createAt    DateTime @default(now())
+  updateAt    DateTime @updatedAt
+  author      User     @relation(fields: [userId], references: [id])
+  userId      Int
+  images      Image[]
+
+  @@map(name: "games")
 }
 
-model Photo {
-  id           Int      @id @default(autoincrement())
-  name         String   @unique @db.VarChar(20)
-  path         String   @unique @db.VarChar(20)
-  game         Game     @relation(fields: [gameId], references: [id])
+model Image {
+  id           Int       @id @default(autoincrement())
+  name         String    @unique @db.VarChar(20)
+  path         String    @unique @db.VarChar(20)
+  game         Game      @relation(fields: [gameId], references: [id])
   gameId       Int
   categoryName String
-  win          Int      @default(0)
-  champion     Int      @default(0)
-  createAt DateTime  @default(now())
-  updateAt DateTime? @updatedAt
-  @@map("phosts")
+  win          Int       @default(0)
+  champion     Int       @default(0)
+  createAt     DateTime  @default(now())
+  updateAt     DateTime? @updatedAt
+
+  @@map("images")
 }
 
 // model Category {
@@ -61,5 +68,5 @@ model Comment {
   commenter User     @relation(fields: [userId], references: [id])
   userId    Int
 
-  @@map("comment")
+  @@map("comments")
 }
