@@ -31,7 +31,7 @@ CREATE TABLE `games` (
 CREATE TABLE `images` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(20) NOT NULL,
-    `path` VARCHAR(20) NOT NULL,
+    `path` VARCHAR(50) NOT NULL,
     `gameId` INTEGER NOT NULL,
     `win` INTEGER NOT NULL DEFAULT 0,
     `champion` INTEGER NOT NULL DEFAULT 0,
@@ -39,7 +39,6 @@ CREATE TABLE `images` (
     `updateAt` DATETIME(3) NULL,
 
     UNIQUE INDEX `images_name_key`(`name`),
-    UNIQUE INDEX `images_path_key`(`path`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

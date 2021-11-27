@@ -41,7 +41,7 @@ model Game {
 model Image {
   id           Int       @id @default(autoincrement())
   name         String    @unique @db.VarChar(20)
-  path         String    @unique @db.VarChar(20)
+  path         String     @db.VarChar(50)
   game         Game      @relation(fields: [gameId], references: [id])
   gameId       Int
   win          Int       @default(0)
