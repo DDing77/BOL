@@ -19,5 +19,5 @@ export const UploadImage = (req) => {
     console.log(value);
   }
 
-  axios.post("/api/games/create", formData).then((res) => console.log(res));
+  axios.post("/api/games/", formData).then((res) => console.log(res));
 };
