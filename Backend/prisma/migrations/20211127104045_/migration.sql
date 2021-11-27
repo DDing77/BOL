@@ -33,7 +33,6 @@ CREATE TABLE `images` (
     `name` VARCHAR(20) NOT NULL,
     `path` VARCHAR(20) NOT NULL,
     `gameId` INTEGER NOT NULL,
-    `categoryName` VARCHAR(191) NOT NULL,
     `win` INTEGER NOT NULL DEFAULT 0,
     `champion` INTEGER NOT NULL DEFAULT 0,
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

@@ -44,7 +44,6 @@ model Image {
   path         String    @unique @db.VarChar(20)
   game         Game      @relation(fields: [gameId], references: [id])
   gameId       Int
-  categoryName String
   win          Int       @default(0)
   champion     Int       @default(0)
   createAt     DateTime  @default(now())
