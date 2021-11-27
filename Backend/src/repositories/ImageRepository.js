@@ -5,14 +5,14 @@ export const createImage = async (gameId, data) => {
   try {
     return await prisma.image.create({
       data: {
+        name: data.originalname,
+        path: data.path,
         game: {
           connect: {
             id: gameId,
           },
-        },
-        path: "/test",
-        name: "test"
-      },
+        }
+      }
     });
   } catch (err) {
     console.error(err);
