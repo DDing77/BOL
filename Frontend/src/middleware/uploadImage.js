@@ -1,25 +1,23 @@
-export const UploadImage =(req) => {
-    console.log(req.image);
+import axios from "axios";
 
-    const formData = new FormData();
-    formData.append('title',req.title)
-    formData.append('description', req.description)
+export const UploadImage = (req) => {
+  console.log(req.image);
 
-    // for( let i = 0; i< req.image.length; i++){
-    //     formData.append('image',req.image[i])
-    // }
-    for(const image of req.image){
-        formData.append('image',image);
-    }
+  const formData = new FormData();
 
-    for (let key of formData.keys()) {
+  formData.append("title", req.title);
+  formData.append("description", req.description);
 
-        console.log(key);
-      
-    }
-    for (let value of formData.values()) {
+  for (const image of req.image) {
+    formData.append("image", image);
+  }
 
-        console.log(value);
-      
-    }
-}
+  for (let key of formData.keys()) {
+    console.log(key);
+  }
+  for (let value of formData.values()) {
+    console.log(value);
+  }
+
+  axios.post("/api/games/create", formData).then((res) => console.log(res));
+};
