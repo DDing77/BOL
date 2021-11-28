@@ -42,7 +42,7 @@ export default function MainPage() {
        <Link to={`/game/${gameInfo.gameId}`}>게임시작하기</Link>
         <button>랭킹보기</button>
         </div>
-        
+        <img src="httP://localhost:5000/upload/Adobe1638066664440.png"/>
       </div>
     </>
   );
