@@ -13,7 +13,7 @@ import GetGameController from './controllers/GetGameController';
 const app = express();
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.static('upload'));
+app.use('/upload', express.static('upload'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(
