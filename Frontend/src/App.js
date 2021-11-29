@@ -44,7 +44,7 @@ function App() {
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/register" element={<RegisterPage />} />
         <Route exact path="/make" element={<GameMakePage />} />
-        <Route  path="/game/:id" element={<GamePage />} />
+        <Route  path="/game/:gameId" element={<GamePage />} />
       </Routes>
     </BrowserRouter>
   );
