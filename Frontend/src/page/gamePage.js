@@ -11,7 +11,6 @@ import {
   final_game,
   game_reset,
   startGame,
-  test_startGame,
 } from "../store/actions/game_action";
 import "../style/gamePage.css";
 
