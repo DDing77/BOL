@@ -45,7 +45,7 @@ export const getAllGames = async (req, res, next) => {
 export const getOneGame = async (req, res, next) => {
   try {
     console.log(req.params);
-    const gameId = parseInt(req.params.id);
+    const gameId = parseInt(req.params.gameid);
     const game = await GameRepository.getOneGame(gameId);
     return res.status(200).send(game);
   } catch (err) {

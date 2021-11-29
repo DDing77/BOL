@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/', ImageHandler,GameService.AddGame);
 router.get('/allgames', GameService.getAllGames);
-router.get('/getgame', GameService.getOneGame);
+router.get('/getgame/:gameid', GameService.getOneGame);
 
 
 export default router;
