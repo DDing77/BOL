@@ -12,8 +12,9 @@ export default function GameCreateForm() {
     formState: { errors },
   } = useForm();
 
-  const submitForm = (data) => {
-    UploadImage.UploadImage(data);
+  const submitForm = async (data) => {
+    await UploadImage.UploadImage(data);
+    navigate("/");
   };
 
   return (
