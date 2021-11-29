@@ -31,7 +31,7 @@ export default function GameComponent(userId) {
         />
         <div style={{ display: "grid" }}>
           <span style={{ fontStyle: "italic" }}>{content.title}</span>
-          <span>{content.description}</span>
+          <span>{content.description}({content.images.length}강)</span>
         </div>
 
         <div>
