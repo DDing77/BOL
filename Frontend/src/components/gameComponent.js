@@ -5,43 +5,43 @@ import * as GetGame from "../util/getGameInfo";
 export default function GameComponent(userId) {
   //   // 모든 게임 불러오기
   //   if (userId === null) {
-  useEffect( () => {
-      const get = async () => {
+  const [gameInfo, setGameInfo] = useState();
 
-      
-    const gameInfo = await GetGame.getAllGame();
-    console.log(gameInfo);
-      }
-      get();
-  });
-  return(
-      <div></div>
-  )
-//   gameInfo.data.map((game) => {
-//     return (
-//       <div style={{ width: "222px", height: "391px" }}>
-//         <img
-//           alt="image1"
-//           src={`${game.images.path}`}
-//           style={{ width: "111px", height: "180px" }}
-//         />
-//         <img
-//           alt="image2"
-//           src={"../images/iu.jpg"}
-//           style={{ width: "111px", height: "180px" }}
-//         />
-//         <div style={{ display: "grid" }}>
-//           <span style={{ fontStyle: "italic" }}>{gameInfo.name}</span>
-//           <span>{gameInfo.description}</span>
-//         </div>
+  useEffect(() => {
+    const get = async () => {
+      const games = await GetGame.getAllGame();
+      console.log(games);
+      setGameInfo(games);
+    };
+    get();
+  }, []);
 
-//         <div>
-//           <Link to={`/game/${gameInfo.gameId}`}>게임시작하기</Link>
-//           <button>랭킹보기</button>
-//         </div>
-//       </div>
-//     );
-//   });
+  const renderAllGameComponent = () =>
+    gameInfo.map((content) => (
+      <div style={{ width: "222px", height: "391px" }}>
+        <img
+          alt="image1"
+          src={"httP://localhost:5000/" + `${content.images[0].path}`}
+          style={{ width: "111px", height: "180px" }}
+        />
+        <img
+          alt="image2"
+          src={"httP://localhost:5000/" + `${content.images[1].path}`}
+          style={{ width: "111px", height: "180px" }}
+        />
+        <div style={{ display: "grid" }}>
+          <span style={{ fontStyle: "italic" }}>{content.title}</span>
+          <span>{content.description}</span>
+        </div>
+
+        <div>
+          <Link to={`/game/${content.id}`}>게임시작하기</Link>
+          <button>랭킹보기</button>
+        </div>
+      </div>
+    ));
+
+  return <div style={{display:"flex"}}>{gameInfo ? renderAllGameComponent() : "loading"}</div>;
 
   // 유저의 게임 불러오기
   //
