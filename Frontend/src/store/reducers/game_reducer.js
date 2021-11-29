@@ -18,7 +18,7 @@ const gamestate = {
   base: [],
   views: [],
   end: false,
-  round: 16,
+  round: 0,
   round8: [],
   round4: [],
   round2: [],
@@ -31,6 +31,7 @@ const gameReducer = (state = gamestate, action) => {
       return {
         ...state,
         gameId: action.payload.gameId,
+        round: action.payload.base.length,
         base: action.payload.base,
         views: [action.payload.base[0], action.payload.base[1]],
       };
