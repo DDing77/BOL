@@ -11,6 +11,9 @@ export const GET_GAME="get_game";
 export const START_GAME = "start_game";
 export const GAME_RESET = "game_reset";
 
+export const ROUND32_1_15 = "round32_1_15";
+export const ROUND32_16 = "round32_16";
+
 export const ROUND16_1_7 = "round16_1_7";
 export const ROUND16_8 = "round16_8";
 

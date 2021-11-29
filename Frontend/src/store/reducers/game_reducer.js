@@ -1,4 +1,6 @@
 import {
+  ROUND32_1_15,
+  ROUND32_16,
   ROUND16_1_7,
   ROUND16_8,
   ROUND8_1_3,
@@ -19,6 +21,7 @@ const gamestate = {
   views: [],
   end: false,
   round: 0,
+  round16: [],
   round8: [],
   round4: [],
   round2: [],
@@ -26,7 +29,7 @@ const gamestate = {
   createAt: "",
   updateAt: "",
   userId: "",
-  author:"",
+  author: "",
 };
 
 const gameReducer = (state = gamestate, action) => {
@@ -35,9 +38,31 @@ const gameReducer = (state = gamestate, action) => {
       return {
         ...state,
         gameId: action.payload.id,
-        round: action.payload.images.length/2,
+        title: action.payload.title,
+        description: action.payload.description,
+        round: action.payload.images.length,
         base: action.payload.images,
         views: [action.payload.images[0], action.payload.images[1]],
+        userId: action.payload.userId,
+        author: action.payload.author.name,
+      };
+
+    case ROUND32_1_15:
+      var count = state.sequence + 1;
+      return {
+        ...state,
+        sequence: count,
+        views: [state.base[2 * count], state.base[2 * count + 1]],
+        round16: action.payload.round16,
+      };
+
+    case ROUND32_16:
+      return {
+        ...state,
+        sequence: 0,
+        views: [state.round16[0], state.round16[1]],
+        round16: action.payload.round16,
+        round: 16,
       };
 
     case ROUND16_1_7:
@@ -54,8 +79,8 @@ const gameReducer = (state = gamestate, action) => {
       return {
         ...state,
         sequence: 0,
-        round8: action.payload.round8,
         views: [state.round8[0], state.round8[1]],
+        round8: action.payload.round8,
         round: 8,
       };
 
@@ -73,8 +98,8 @@ const gameReducer = (state = gamestate, action) => {
       return {
         ...state,
         sequence: 0,
-        round4: action.payload.round4,
         views: [state.round4[0], state.round4[1]],
+        round4: action.payload.round4,
         round: 4,
       };
 
@@ -93,8 +118,8 @@ const gameReducer = (state = gamestate, action) => {
       return {
         ...state,
         sequence: 0,
-        round2: action.payload.round2,
         views: [view[0], view[1]],
+        round2: action.payload.round2,
         round: 2,
       };
 

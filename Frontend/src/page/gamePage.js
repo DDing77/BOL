@@ -4,12 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import GameTitle from "../components/gameTitle";
 import {
-  round16_1_7,
-  round16_8,
-  round8_1_3,
-  round8_4,
-  round4_1,
-  round4_2,
+  round32,
+  round16,
+  round8,
+  round4,
   final_game,
   game_reset,
   startGame,
@@ -22,7 +20,7 @@ export default function GamePage() {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const gameState = useSelector((store) => store.game);
-  //   const path = "../images/";
+
   console.log(gameState);
   console.log(gameId);
   console.log("게임실행 페이지");
@@ -31,37 +29,30 @@ export default function GamePage() {
     dispatch(startGame(gameId));
   }, []);
 
-  const onClickHandler = async (gameId) => {
+  const onClickHandler = async (imageId) => {
     console.log(gameState.round8);
     console.log(gameState.round4);
 
-    if (gameState.round8.length < 7) {
-      dispatch(round16_1_7(gameState.round8, gameId, gameState));
+    if(gameState.round === 32) {
+      dispatch(round32(imageId, gameState));
     }
-    if (gameState.round8.length === 7) {
-      dispatch(round16_8(gameState.round8, gameId, gameState));
-      console.log("===16강종료===");
+
+    if(gameState.round === 16) {
+      dispatch(round16(imageId, gameState));
     }
-    if (gameState.round4.length < 3 && gameState.round8.length > 7) {
-      dispatch(round8_1_3(gameState.round4, gameId, gameState));
-      console.log("===8강 첫경기===");
+
+    if(gameState.round === 8) {
+      dispatch(round8(imageId, gameState));
     }
-    if (gameState.round4.length === 3) {
-      dispatch(round8_4(gameState.round4, gameId, gameState));
-      console.log("===8강종료===");
+
+    if(gameState.round === 4) {
+      dispatch(round4(imageId, gameState));
     }
-    if (gameState.round2.length < 1 && gameState.round4.length > 3) {
-      dispatch(round4_1(gameState.round2, gameId, gameState));
-      console.log("===4강 첫경기===");
+
+    if(gameState.round === 2) {
+      dispatch(final_game(imageId, gameState));
     }
-    if (gameState.round2.length === 1) {
-      await dispatch(round4_2(gameState.round2, gameId, gameState));
-      console.log("===4강종료===");
-    }
-    if (gameState.round2.length === 2) {
-      dispatch(final_game(gameId, gameState));
-      console.log("===결승===");
-    }
+
     if (gameState.end) {
       dispatch(game_reset());
       console.log("게임초기화 후 메인화면 이동!");
@@ -69,7 +60,7 @@ export default function GamePage() {
     }
   };
 
-  console.log("sequence :" + gameState.sequnce);
+  console.log("sequence :" + gameState.sequence);
 
   return (
     <>
