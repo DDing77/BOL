@@ -14,20 +14,12 @@ import {
 } from "./types";
 
 export const test_startGame = (gameId) => {
-  // gameId로 요청
-  //   const request = axios
-  //     .get(`/api/games/${gameId}`)
-  //     .then((response) => response.data);
-  //   return {
-  //     type: START_GAME,
-  //     payload: request,
-  //   };
-
   // Test용
   const request = {
     gameId: 1,
     base: base.sort(() => Math.random() - Math.random()),
   };
+  
   console.log("base 랜덤정렬");
   console.log(base);
 
@@ -37,13 +29,21 @@ export const test_startGame = (gameId) => {
   };
 };
 
-export const startGame = (gameId) => {
-  const game = axios.get("/api/getgames/one", gameId).then(res=>res.data)
-  const request = {
-    
-  }
+export const startGame = async (gameId) => {
+  console.log(gameId);
 
-}
+ const game = await axios
+    .get(`/api/games/getgame/${gameId}`)
+    .then((response) => response.data);
+
+  game.images.sort(() => Math.random() - Math.random()) // 랜덤으로 순서 섞기
+
+  console.log(game);
+  return {
+    type: START_GAME,
+    payload: game,
+  };
+};
 
 export const round16_1_7 = (round8, id, gameState) => {
   const new_round8 = round8.slice();
@@ -80,7 +80,6 @@ export const round16_8 = (round8, id, gameState) => {
 };
 
 export const round8_1_3 = (round4, id, gameState) => {
-
   const new_round4 = round4.slice();
 
   new_round4.push(gameState.base.find((item) => item.id === id));
@@ -98,7 +97,6 @@ export const round8_1_3 = (round4, id, gameState) => {
 };
 
 export const round8_4 = (round4, id, gameState) => {
-
   const new_round4 = round4.slice();
 
   new_round4.push(gameState.base.find((item) => item.id === id));
@@ -149,21 +147,20 @@ export const round4_2 = (round2, id, gameState) => {
   };
 };
 
-export const final_game= (id,gameState) => {
-  const request = gameState.base.find((item) => item.id === id)
-  console.log(request)
-  return{
-    type:ROUND_FINAL,
-    payload:request,
-  }
-}
+export const final_game = (id, gameState) => {
+  const request = gameState.base.find((item) => item.id === id);
+  console.log(request);
+  return {
+    type: ROUND_FINAL,
+    payload: request,
+  };
+};
 
 export const game_reset = () => {
-  
-  return{
-    type:GAME_RESET
-  }
-}
+  return {
+    type: GAME_RESET,
+  };
+};
 
 const base = [
   {

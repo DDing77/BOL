@@ -18,7 +18,7 @@ import {
 import "../style/gamePage.css";
 
 export default function GamePage() {
-  const { gameId } = useParams();
+  const { gameId } = useParams(); // router의 :id 값과 똑같이 써야 동작
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const gameState = useSelector((store) => store.game);
@@ -28,7 +28,7 @@ export default function GamePage() {
   console.log("게임실행 페이지");
 
   useEffect(() => {
-    dispatch(test_startGame(gameId));
+    dispatch(startGame(gameId));
   }, []);
 
   const onClickHandler = async (gameId) => {
@@ -83,7 +83,7 @@ export default function GamePage() {
                 <img
                   className="imageDetail"
                   alt="views0"
-                  src={`../images/${views.img}`}
+                  src={"httP://localhost:5000/" + `${views.path}`}
                   onClick={() => {
                     onClickHandler(views.id);
                   }}
@@ -102,7 +102,7 @@ export default function GamePage() {
             <img
               className="imageDetail"
               alt="champion"
-              src={`../images/${gameState.champion.img}`}
+              src={"httP://localhost:5000/" + `${gameState.champion.path}`}
             />
             <span className="imageName">우승! {gameState.champion.name}</span>
             <button
