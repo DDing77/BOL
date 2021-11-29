@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import {
   ROUND16_1_7,
   ROUND16_8,
@@ -8,6 +8,8 @@ import {
   ROUND4_2,
   ROUND_FINAL,
   GAME_RESET,
+  GET_ALL_GAME,
+  GET_GAME,
   START_GAME,
 } from "./types";
 
