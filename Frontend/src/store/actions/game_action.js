@@ -13,10 +13,10 @@ import {
   START_GAME,
 } from "./types";
 
-export const startGame = (dataToSumit) => {
+export const test_startGame = (gameId) => {
   // gameId로 요청
   //   const request = axios
-  //     .get(`/api/games/${dataToSumit}`)
+  //     .get(`/api/games/${gameId}`)
   //     .then((response) => response.data);
   //   return {
   //     type: START_GAME,
@@ -36,6 +36,14 @@ export const startGame = (dataToSumit) => {
     payload: request,
   };
 };
+
+export const startGame = (gameId) => {
+  const game = axios.get("/api/getgames/one", gameId).then(res=>res.data)
+  const request = {
+    
+  }
+
+}
 
 export const round16_1_7 = (round8, id, gameState) => {
   const new_round8 = round8.slice();
