@@ -4,7 +4,9 @@ import ImageHandler from '../../middleware/ImageHandler';
 import * as GameService from '../services/GameService';
 const router = express.Router();
 
-router.get('/allgames', GameService.getAllGames);
 router.post('/', ImageHandler,GameService.AddGame);
+router.get('/allgames', GameService.getAllGames);
+router.get('/getgame', GameService.getOneGame);
+
 
 export default router;
