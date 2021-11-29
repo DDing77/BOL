@@ -18,7 +18,7 @@ export default function GameComponent(userId) {
 
   const renderAllGameComponent = () =>
     gameInfo.map((content) => (
-      <div style={{ width: "222px", height: "391px" }}>
+      <div style={{ width: "222px", height: "391px" ,padding:"1.7rem"}}>
         <img
           alt="image1"
           src={"httP://localhost:5000/" + `${content.images[0].path}`}
@@ -41,7 +41,7 @@ export default function GameComponent(userId) {
       </div>
     ));
 
-  return <div style={{display:"flex"}}>{gameInfo ? renderAllGameComponent() : "loading"}</div>;
+  return <div classNamd="gameComponent"style={{display:"flex", flexFlow:"wrap"}}>{gameInfo ? renderAllGameComponent() : "loading"}</div>;
 
   // 유저의 게임 불러오기
   //
