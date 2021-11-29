@@ -13,52 +13,53 @@ import {
   final_game,
   game_reset,
   startGame,
+  test_startGame,
 } from "../store/actions/game_action";
 import "../style/gamePage.css";
 
 export default function GamePage() {
-  const { id } = useParams();
+  const { gameId } = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const gameState = useSelector((store) => store.game);
   //   const path = "../images/";
   console.log(gameState);
-  console.log(id);
+  console.log(gameId);
   console.log("게임실행 페이지");
 
   useEffect(() => {
-    dispatch(startGame());
+    dispatch(test_startGame(gameId));
   }, []);
 
-  const onClickHandler = async (id) => {
+  const onClickHandler = async (gameId) => {
     console.log(gameState.round8);
     console.log(gameState.round4);
 
     if (gameState.round8.length < 7) {
-      dispatch(round16_1_7(gameState.round8, id, gameState));
+      dispatch(round16_1_7(gameState.round8, gameId, gameState));
     }
     if (gameState.round8.length === 7) {
-      dispatch(round16_8(gameState.round8, id, gameState));
+      dispatch(round16_8(gameState.round8, gameId, gameState));
       console.log("===16강종료===");
     }
     if (gameState.round4.length < 3 && gameState.round8.length > 7) {
-      dispatch(round8_1_3(gameState.round4, id, gameState));
+      dispatch(round8_1_3(gameState.round4, gameId, gameState));
       console.log("===8강 첫경기===");
     }
     if (gameState.round4.length === 3) {
-      dispatch(round8_4(gameState.round4, id, gameState));
+      dispatch(round8_4(gameState.round4, gameId, gameState));
       console.log("===8강종료===");
     }
     if (gameState.round2.length < 1 && gameState.round4.length > 3) {
-      dispatch(round4_1(gameState.round2, id, gameState));
+      dispatch(round4_1(gameState.round2, gameId, gameState));
       console.log("===4강 첫경기===");
     }
     if (gameState.round2.length === 1) {
-      await dispatch(round4_2(gameState.round2, id, gameState));
+      await dispatch(round4_2(gameState.round2, gameId, gameState));
       console.log("===4강종료===");
     }
     if (gameState.round2.length === 2) {
-      dispatch(final_game(id, gameState));
+      dispatch(final_game(gameId, gameState));
       console.log("===결승===");
     }
     if (gameState.end) {
