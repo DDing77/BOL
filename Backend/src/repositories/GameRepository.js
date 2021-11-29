@@ -34,3 +34,20 @@ export const createGame = async (userId, data) => {
   //     console.error(err);
   //   }
   // };
+
+  export const getAllGames = async () => {
+    try {
+      return await prisma.game.findMany({
+        include: {
+          author: {
+            select: {
+              name: true,
+            },
+          },
+          images: true
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };

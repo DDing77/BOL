@@ -8,7 +8,6 @@ import env from '../config';
 import passportSession from '../config/Passport/index';
 import UserController from './controllers/UserController';
 import GameController from './controllers/GameController';
-import GetGameController from './controllers/GetGameController';
 
 const app = express();
 app.use(logger('dev'));
@@ -32,7 +31,6 @@ app.use(passport.session());
 
 app.use('/api/users',UserController);
 app.use('/api/games',GameController);
-app.use('/api/getgames',GetGameController);
 
 app.listen(env.PORT, ()=>{
     console.log('서버시작');

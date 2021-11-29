@@ -29,3 +29,13 @@ export const AddGame = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getAllGames = async (req, res, next) => {
+  try {
+    const games = await GameRepository.getAllGames();
+    return res.status(200).send(games);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
