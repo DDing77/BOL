@@ -45,13 +45,8 @@ export default function MainPage() {
           <Link to={`/game/${gameInfo.gameId}`}>게임시작하기</Link>
           <button>랭킹보기</button>
         </div>
-        <img
-          alt="testserverimage"
-          src="httP://localhost:5000/upload/Adobe1638066664440.png"
-          style={{ width: "300px", height: "300px" }}
-        />
       </div>
-      <div>
+      <div className="test" style={{display: "flex", flexFlow:"row"}}>
         <GameComponent/>
       </div>
     </>
