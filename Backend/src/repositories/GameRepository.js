@@ -51,3 +51,23 @@ export const createGame = async (userId, data) => {
       console.error(err);
     }
   };
+
+  export const getOneGame = async (gameId) => {
+    try {
+      return await prisma.game.findUnique({
+        where: {
+          id: gameId,
+        },
+        include: {
+          author: {
+            select: {
+              name: true,
+            },
+          },
+          images: true
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };

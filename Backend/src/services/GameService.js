@@ -30,10 +30,24 @@ export const AddGame = async (req, res, next) => {
   }
 };
 
+// 모든 게임 정보 요청
 export const getAllGames = async (req, res, next) => {
   try {
     const games = await GameRepository.getAllGames();
     return res.status(200).send(games);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
+// 특정 게임 정보 요청
+export const getOneGame = async (req, res, next) => {
+  try {
+    console.log(req.params);
+    const gameId = parseInt(req.params.id);
+    const game = await GameRepository.getOneGame(gameId);
+    return res.status(200).send(game);
   } catch (err) {
     console.error(err);
     next(err);
