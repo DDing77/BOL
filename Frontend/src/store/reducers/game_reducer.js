@@ -12,8 +12,8 @@ import {
 
 const gamestate = {
   gameId: "",
-  gameTitle: "",
-  gameDescription: "",
+  title: "",
+  description: "",
   sequence: 0,
   base: [],
   views: [],
@@ -23,6 +23,10 @@ const gamestate = {
   round4: [],
   round2: [],
   champion: "",
+  createAt: "",
+  updateAt: "",
+  userId: "",
+  author:"",
 };
 
 const gameReducer = (state = gamestate, action) => {
@@ -30,10 +34,10 @@ const gameReducer = (state = gamestate, action) => {
     case START_GAME:
       return {
         ...state,
-        gameId: action.payload.gameId,
-        round: action.payload.base.length,
-        base: action.payload.base,
-        views: [action.payload.base[0], action.payload.base[1]],
+        gameId: action.payload.id,
+        round: action.payload.images.length/2,
+        base: action.payload.images,
+        views: [action.payload.images[0], action.payload.images[1]],
       };
 
     case ROUND16_1_7:
