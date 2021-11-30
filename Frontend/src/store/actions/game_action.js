@@ -12,7 +12,7 @@ import {
   GAME_RESET,
   START_GAME,
 } from "./types";
-
+import * as UpdateWin from "../../util/gameWinUpdate";
 
 // 게임 시작 액션
 export const startGame = async (gameId) => {
@@ -31,10 +31,11 @@ export const startGame = async (gameId) => {
   };
 };
 
-export const round32 = (imageId, gameState) => {
+export const round32 = async (imageId, gameState) => {
   const new_round16 = gameState.round16.slice();
 
   new_round16.push(gameState.base.find((item) => item.id === imageId));
+  UpdateWin.updateWin(imageId);
 
   const request = {
     round16: new_round16,
@@ -42,7 +43,7 @@ export const round32 = (imageId, gameState) => {
 
   console.log(request);
 
-  if(gameState.round16.length < 15) {
+  if (gameState.round16.length < 15) {
     // 32강 1~15번째 경기
     return {
       type: ROUND32_1_15,
@@ -62,6 +63,7 @@ export const round16 = (imageId, gameState) => {
   const new_round8 = gameState.round8.slice();
 
   new_round8.push(gameState.base.find((item) => item.id === imageId));
+  UpdateWin.updateWin(imageId);
 
   const request = {
     round8: new_round8,
@@ -89,6 +91,7 @@ export const round8 = (imageId, gameState) => {
   const new_round4 = gameState.round4.slice();
 
   new_round4.push(gameState.base.find((item) => item.id === imageId));
+  UpdateWin.updateWin(imageId);
 
   const request = {
     round4: new_round4,
@@ -115,6 +118,7 @@ export const round4 = (imageId, gameState) => {
   const new_round2 = gameState.round2.slice();
 
   new_round2.push(gameState.base.find((item) => item.id === imageId));
+  UpdateWin.updateWin(imageId);
 
   const request = {
     round2: new_round2,
@@ -140,7 +144,10 @@ export const round4 = (imageId, gameState) => {
 // 결승전
 export const final_game = (imageId, gameState) => {
   const request = gameState.base.find((item) => item.id === imageId);
+  UpdateWin.updateChampion(imageId);
+
   console.log(request);
+
   return {
     type: ROUND_FINAL,
     payload: request,
