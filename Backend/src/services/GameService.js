@@ -1,4 +1,3 @@
-import { channel } from 'diagnostics_channel';
 import fs from 'fs';
 import * as GameRepository from '../repositories/GameRepository';
 import * as ImageRepository from '../repositories/ImageRepository';
@@ -66,7 +65,22 @@ export const editWin = async (req,res,next) => {
       res.status(200).send("승리횟수 증가 성공");
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    next(err);
+  }
+};
+// 우승, 승리 요청 
+export const editChampion = async (req,res,next) => {
+  try{
+    const image = req.body.imageId;
+    const editedChampion = await GameRepository.updateChampion(parseInt(image));
+    if(!editedChampion) {
+      res.send("우승, 승리횟수 증가 시도 오류.");
+    } else {
+      res.status(200).send("우승, 승리횟수 증가 성공");
+    }
+  } catch (err) {
+    console.error(err);
     next(err);
   }
 };
