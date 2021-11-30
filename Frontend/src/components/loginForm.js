@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Login } from "../auth/controller/userController";
 
@@ -22,6 +22,7 @@ function LoginForm(props) {
   console.log("로그인폼 렌더링");
 
   return (
+    <>
     <form onSubmit={handleSubmit(submitForm)}>
       <label htmlFor="email">Email</label>
       <input
@@ -46,6 +47,15 @@ function LoginForm(props) {
       />
       <input type="submit" />
     </form>
+    <button>
+            <Link
+              to="/register"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              회원가입하러 가기
+            </Link>
+          </button>
+    </>
   );
 }
 

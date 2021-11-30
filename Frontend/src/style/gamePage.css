@@ -29,6 +29,7 @@ section {
 }
 
 img.imageDetail {
+    background-color: white;
     width: 100%;
     min-width: 100%;
     min-height: 100%;
@@ -48,8 +49,9 @@ img.imageDetail {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 128px;
     color:#da0f3b;
+    display: flex;
     position:absolute;
-    top:50%;
+    top:55%;
     z-index: 3;
 }
 
