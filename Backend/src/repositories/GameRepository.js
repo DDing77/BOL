@@ -71,3 +71,14 @@ export const createGame = async (userId, data) => {
       console.error(err);
     }
   };
+
+  export const updateWin = async (image) => {
+    try{
+      return await prisma.post.update({
+        where: {id:image},
+        data:{
+          win: win+1
+        }
+      })
+    }
+  }
