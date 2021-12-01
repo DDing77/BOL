@@ -1,8 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import GameCreateForm from "../components/gameCreateForm";
 export default function GameMakePage() {
-  let navigate = useNavigate();
 
   return (
     <>

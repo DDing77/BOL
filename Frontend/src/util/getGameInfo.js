@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 
 // 모든 게임 정보 가져옴

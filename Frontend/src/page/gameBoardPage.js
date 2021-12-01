@@ -20,7 +20,7 @@ export default function GameBoardPage() {
       setGameInfo(games);
     };
     get();
-  }, []);
+  }, [gameId]);
   console.log(gameInfo)
   // 현재 페이지 가져오기
   // const indexOfLastImage = currentPage * imagePerPage; // 1*10 = 10번 이미지

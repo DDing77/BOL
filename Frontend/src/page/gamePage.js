@@ -26,7 +26,7 @@ export default function GamePage() {
 
   useEffect(() => {
     dispatch(startGame(gameId));
-  }, []);
+  }, [dispatch,gameId]);
 
   const onClickHandler = async (imageId) => {
     console.log(gameState.round8);
@@ -73,7 +73,7 @@ export default function GamePage() {
                 <img
                   className="imageDetail"
                   alt="views0"
-                  src={"httP://localhost:5000/" + `${views.path}`}
+                  src={`httP://localhost:5000/${views.path}`}
                   onClick={() => {
                     onClickHandler(views.id);
                   }}
@@ -92,7 +92,7 @@ export default function GamePage() {
             <img
               className="imageDetail"
               alt="champion"
-              src={"httP://localhost:5000/" + `${gameState.champion.path}`}
+              src={`httP://localhost:5000/${gameState.champion.path}`}
             />
             <span className="imageName">우승! {gameState.champion.name}</span>
             <button

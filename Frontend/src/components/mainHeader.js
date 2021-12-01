@@ -15,7 +15,7 @@ export default function MainHeader() {
   return (
     <div className="container">
       <div className="navbar">
-        <a className="nav-home">
+        <a className="nav-home" href="{()=>false}">
           <Link className="nav-home-link" to="/">
             BOL
           </Link>
