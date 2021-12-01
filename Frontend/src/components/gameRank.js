@@ -12,7 +12,7 @@ const Image = ({ images, loading }) => {
           //   className="img-box"
           style={{ width: "100px" }}
           alt={index}
-          src={"httP://localhost:5000/" + `${content.path}`}
+          src={`httP://localhost:5000/${content.path}`}
         />
       </td>
       <td>{content.name}</td>
