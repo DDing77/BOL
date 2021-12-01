@@ -13,26 +13,25 @@ export default function GameComponent(userId) {
   useEffect(() => {
     const get = async () => {
       const games = await GetGame.getAllGame();
-      console.log(games);
       setGameInfo(games);
     };
     get();
   }, []);
 
   const renderAllGameComponent = () =>
-    gameInfo.map((content) => (
-      <div className="gameComponent-container">
+    gameInfo.map((content,index) => (
+      <div className="gameComponent-container" id={`${index}`}>
         <div className="gameProduct">
           <div className="imageSection">
             <img
               className="img-box"
               alt="image1"
-              src={"httP://localhost:5000/" + `${content.images[0].path}`}
+              src={`httP://localhost:5000/${content.images[0].path}`}
             />
             <img
               className="img-box"
               alt="image2"
-              src={"httP://localhost:5000/" + `${content.images[1].path}`}
+              src={`httP://localhost:5000/${content.images[1].path}`}
             />
           </div>
           <div className="gameProduct-text">
