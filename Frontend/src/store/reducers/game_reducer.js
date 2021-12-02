@@ -37,6 +37,7 @@ const gameReducer = (state = gamestate, action) => {
     case START_GAME:
       return {
         ...state,
+        sequence: 0,
         gameId: action.payload.id,
         title: action.payload.title,
         description: action.payload.description,
