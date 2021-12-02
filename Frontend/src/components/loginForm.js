@@ -32,23 +32,30 @@ function LoginForm(props) {
   return (
     <div className="loginForm-cotainer">
       <div className="loginForm-title">
-        <span className="loginForm-title">Create Account</span>
+        <span className="loginForm-title">Sign In</span>
       </div>
       <form className="loginForm-section" onSubmit={handleSubmit(submitForm)}>
-        <input name="email" type="email" placeholder="Email" {...register("Email")} />
+        <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          {...register("Email")}
+        />
         <span style={{ color: "red" }}>
           {errors.Email && "이메일 형식이 맞지 않습니다."}
         </span>
-        <input name="password" type="text" placeholder="password" {...register("Password")} />
+        <input
+          name="password"
+          type="text"
+          placeholder="password"
+          {...register("Password")}
+        />
         <span style={{ color: "red" }}>
           {errors.Password && "8글자 이상 입력하세요"}
         </span>
         <button type="submit">로그인</button>
         <button>
-          <Link
-            className="link-register"
-            to="/register"
-          >
+          <Link className="link-register" to="/register">
             회원가입
           </Link>
         </button>
