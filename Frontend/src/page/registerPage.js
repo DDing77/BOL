@@ -4,8 +4,15 @@ export default function RegisterPage(props) {
   console.log("회원가입페이지");
   return (
     <>
-      <h1>회원가입 페이지</h1>
-      <div>
+      <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        height: "100vh",
+        top: "150px",
+        backgroundColor: "white",
+      }}
+    >
         <RegisterForm />
       </div>
     </>
