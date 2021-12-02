@@ -56,6 +56,6 @@ export const Register = (dispath, navigate, data) => {
     if (res.payload != null) {
       console.log("===회원가입 성공===");
     }
-    navigate("/");
+    navigate("/login");
   });
 };

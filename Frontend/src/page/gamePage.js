@@ -21,8 +21,6 @@ export default function GamePage() {
   const gameState = useSelector((store) => store.game);
 
   console.log(gameState);
-  console.log(gameId);
-  console.log("게임실행 페이지");
 
   useEffect(() => {
     dispatch(startGame(gameId));
@@ -55,7 +53,7 @@ export default function GamePage() {
     if (gameState.end) {
       dispatch(game_reset());
       console.log("게임초기화 후 메인화면 이동!");
-      navigate("/");
+      navigate(`/rank/${gameId}`);
     }
   };
 
@@ -100,7 +98,7 @@ export default function GamePage() {
                 onClickHandler();
               }}
             >
-              초기화
+              결과 화면
             </button>
           </div>
         ) : (
