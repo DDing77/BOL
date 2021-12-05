@@ -11,8 +11,21 @@ import {
   ROUND_FINAL,
   GAME_RESET,
   START_GAME,
+  GET_ALL_GAME,
 } from "./types";
 import * as UpdateWin from "../../util/gameWinUpdate";
+
+// 모든 게임 가져오기
+export const getAllGame = async () => {
+  const games = await axios
+  .get("/api/games/allgames")
+  .then((response) => response.data);
+console.log(games);
+return {
+  type: GET_ALL_GAME,
+  payload: games,
+};
+};
 
 // 게임 시작 액션
 export const startGame = async (gameId) => {

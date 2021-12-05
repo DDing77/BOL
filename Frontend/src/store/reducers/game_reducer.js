@@ -10,6 +10,7 @@ import {
   ROUND_FINAL,
   GAME_RESET,
   START_GAME,
+  GET_ALL_GAME,
 } from "../actions/types";
 
 const gamestate = {
@@ -30,10 +31,16 @@ const gamestate = {
   updateAt: "",
   userId: "",
   author: "",
+  gameCount:0,
 };
 
 const gameReducer = (state = gamestate, action) => {
   switch (action.type) {
+    case GET_ALL_GAME:
+      return {
+        ...state,
+        gameCount: action.payload.length,
+      }
     case START_GAME:
       return {
         ...state,
