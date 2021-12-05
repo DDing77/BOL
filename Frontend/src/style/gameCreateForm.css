@@ -1,0 +1,43 @@
+.registerForm-cotainer {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    width: 20%;
+    height: 50%;
+    box-shadow: 1px 1px 1px 2px gray;
+    position: relative;
+    top: 20%;
+    border-radius: 2%;
+  }
+
+  .registerForm-title {
+    height: 30%;
+    display: flex;
+    align-items: center;
+  }
+
+  span.registerForm-title {
+    font-size: 32px;
+    font-weight: 700;
+    font-style: oblique;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .registerForm-section {
+    height: 70%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  form input {
+    padding: 10px;
+    margin: 0.1rem;
+  }
+
+  form button {
+    width: 100%;
+    background-color: #1976d2;
+    color: white;
+    margin: 0.1rem;
+  }

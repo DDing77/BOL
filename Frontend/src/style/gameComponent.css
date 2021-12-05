@@ -1,0 +1,76 @@
+.gameComponent {
+  display: flex;
+  flex-flow: wrap;
+  /* justify-content: space-evenly; */
+}
+
+.gameComponent-container {
+  padding: 0.5rem;
+  width: 20%;
+  height: 20rem;
+  box-shadow: 1px 1px 1px 1px rgb(211, 208, 208);
+}
+
+.gameProduct {
+  height: 100%;
+  background-color: white;
+}
+
+.imageSection {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.img-box {
+  background-color: beige;
+  min-width: 50%;
+  object-fit: cover;
+}
+
+.gameProduct-text {
+  height: 25%;
+  display: flex;
+  flex-flow: column;
+}
+
+.gameProduct-title {
+  font-size: 1rem;
+  font-weight: 1000;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0.4rem;
+  height: 50%;
+}
+
+.gameProduct-description {
+  height: 50%;
+}
+
+.gameProduct-btn {
+  display: flex;
+  width: 100%;
+  height: 15%;
+}
+
+.btn-start {
+  width: 50%;
+  height: 100%;
+}
+
+.btn-rank {
+  width: 50%;
+  height: 100%;
+}
+
+.start {
+  color: rgb(231, 42, 42);
+  font-size: 1rem;
+  font-weight: 1000;
+}
+
+.rank {
+  font-size: 1rem;
+  font-weight: 1000;
+  color: rgb(230, 161, 32);
+}
