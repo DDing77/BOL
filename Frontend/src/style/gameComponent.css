@@ -1,12 +1,12 @@
 .gameComponent {
   display: flex;
   flex-flow: wrap;
-  /* justify-content: space-evenly; */
 }
 
 .gameComponent-container {
   padding: 0.5rem;
-  width: 20%;
+  min-width: 300px;
+  width: 19%;
   height: 20rem;
   box-shadow: 1px 1px 1px 1px rgb(211, 208, 208);
 }
