@@ -7,6 +7,7 @@
 .gameComponent-container {
   padding: 0.5rem;
   width: 20%;
+  height: 20rem;
   box-shadow: 1px 1px 1px 1px rgb(211, 208, 208);
 }
 
@@ -35,6 +36,9 @@
 }
 
 .gameProduct-title {
+  font-size: 1rem;
+  font-weight: 1000;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 0.4rem;
   height: 50%;
 }
@@ -61,8 +65,12 @@
 
 .start {
   color: rgb(231, 42, 42);
+  font-size: 1rem;
+  font-weight: 1000;
 }
 
 .rank {
+  font-size: 1rem;
+  font-weight: 1000;
   color: rgb(230, 161, 32);
 }
