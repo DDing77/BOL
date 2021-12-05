@@ -35,9 +35,9 @@ export default function GameComponent(userId) {
             />
           </div>
           <div className="gameProduct-text">
-            <span className="gameProduct-title">{content.title}</span>
+            <span className="gameProduct-title">{content.title}({content.images.length}강)</span>
             <span className="gameProduct-description">
-              {content.description}({content.images.length}강)
+              {content.description}
             </span>
           </div>
           <div className="gameProduct-btn">
