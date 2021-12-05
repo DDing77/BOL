@@ -1,9 +1,10 @@
-.container {
+.header-container {
   display: flex;
   height: 10%;
   justify-content: space-between;
   background-color: white;
   margin-bottom: 1.2em;
+  box-shadow: 1px 1px 1px 1px rgb(209, 208, 208);
 }
 
 .navbar {
