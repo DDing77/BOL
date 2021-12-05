@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as GetGame from "../util/getGameInfo";
+import {getAllGame} from "../store/actions/game_action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faListOl } from "@fortawesome/free-solid-svg-icons";
 import "../style/gameComponent.css";
@@ -8,18 +10,22 @@ import "../style/gameComponent.css";
 export default function GameComponent(userId) {
   //   // 모든 게임 불러오기
   //   if (userId === null) {
+  const dispatch = useDispatch();
+  const gameStore = useSelector((store) => store.game);
+  console.log(gameStore);
   const [gameInfo, setGameInfo] = useState();
-
+  
   useEffect(() => {
+    dispatch(getAllGame())
     const get = async () => {
       const games = await GetGame.getAllGame();
       setGameInfo(games);
     };
     get();
-  }, []);
+  }, [dispatch]);
 
   const renderAllGameComponent = () =>
-    gameInfo.map((content,index) => (
+    gameInfo.map((content, index) => (
       <div className="gameComponent-container" id={`${index}`}>
         <div className="gameProduct">
           <div className="imageSection">
@@ -35,7 +41,9 @@ export default function GameComponent(userId) {
             />
           </div>
           <div className="gameProduct-text">
-            <span className="gameProduct-title">{content.title}({content.images.length}강)</span>
+            <span className="gameProduct-title">
+              {content.title}({content.images.length}강)
+            </span>
             <span className="gameProduct-description">
               {content.description}
             </span>
@@ -51,12 +59,12 @@ export default function GameComponent(userId) {
               </Link>
             </button>
             <button className="btn-rank">
-              <Link className="rank" to={`/rank/${content.id}`} >
-              <FontAwesomeIcon
-                icon={faListOl}
-                style={{ paddingRight: "7px" }}
-              />
-              랭킹보기
+              <Link className="rank" to={`/rank/${content.id}`}>
+                <FontAwesomeIcon
+                  icon={faListOl}
+                  style={{ paddingRight: "7px" }}
+                />
+                랭킹보기
               </Link>
             </button>
           </div>
