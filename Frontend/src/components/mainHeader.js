@@ -13,11 +13,11 @@ export default function MainHeader() {
   console.log(user);
   // console.log(navigate);
   return (
-    <div className="container">
+    <div className="header-container">
       <div className="navbar">
         <a className="nav-home" href="/">
           <Link className="nav-home-link" to="/">
-            BOL
+            LOB
           </Link>
         </a>
         <button>
