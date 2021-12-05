@@ -2,6 +2,8 @@ import "./App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import PrivateRoute from "./auth/Route/PrivateRoute";
+import PublicRoute from "./auth/Route/PublicRoute";
 import isLogin from "./auth/isLogin";
 import { loginCheck } from "./store/actions/user_action";
 
@@ -42,11 +44,43 @@ function App() {
       <MainHeader />
       <Routes>
         <Route exact path="/" element={<MainPage />} />
-        <Route exact path="/login" element={<LoginPage />} />
-        <Route exact path="/register" element={<RegisterPage />} />
-        <Route exact path="/make" element={<GameMakePage />} />
-        <Route exact path="/game/:gameId" element={<GamePage />} />
-        <Route exact path="/rank/:gameId" element={<GameBoardPage/>} />
+        <Route
+          exact
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          exact
+          path="/register"
+          element={
+            <PublicRoute>
+              <RegisterPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          exact
+          path="/make"
+          element={
+            <PrivateRoute>
+              <GameMakePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/game/:gameId"
+          element={
+            <PrivateRoute>
+              <GamePage />
+            </PrivateRoute>
+          }
+        />
+        <Route exact path="/rank/:gameId" element={<GameBoardPage />} />
       </Routes>
     </BrowserRouter>
   );
