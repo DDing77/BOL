@@ -15,6 +15,7 @@ import GameMakePage from "./page/gameMakePage";
 import GamePage from "./page/gamePage";
 import GameBoardPage from "./page/gameBoardPage";
 import MyGamePage from "./page/myGamePage";
+import GameSettingPage from "./page/gameSettingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -87,6 +88,15 @@ function App() {
           element={
             <PrivateRoute>
               <MyGamePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/game/setting/:gameId"
+          element={
+            <PrivateRoute>
+              <GameSettingPage />
             </PrivateRoute>
           }
         />

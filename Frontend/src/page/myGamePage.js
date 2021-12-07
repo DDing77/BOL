@@ -68,7 +68,7 @@ export default function MyGamePage() {
           </div>
           <div className="gameProduct-btn">
             <button className="btn-start">
-              <Link className="eidt" to={`/game/${content.id}`}>
+              <Link className="eidt" to={`/game/setting/${content.id}`}>
                 <FontAwesomeIcon
                   icon={faEdit}
                   style={{ paddingRight: "7px" }}
