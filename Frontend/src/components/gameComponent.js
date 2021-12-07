@@ -14,7 +14,7 @@ export default function GameComponent(userId) {
   const gameStore = useSelector((store) => store.game);
   console.log(gameStore);
   const [gameInfo, setGameInfo] = useState();
-  
+  console.log(gameInfo)
   useEffect(() => {
     dispatch(getAllGame())
     const get = async () => {
@@ -22,6 +22,7 @@ export default function GameComponent(userId) {
       setGameInfo(games);
     };
     get();
+    
   }, [dispatch]);
 
   const renderAllGameComponent = () =>
@@ -46,6 +47,9 @@ export default function GameComponent(userId) {
             </span>
             <span className="gameProduct-description">
               {content.description}
+            </span>
+            <span className="gameProduct-author">
+              제작자 : {content.author.name}
             </span>
           </div>
           <div className="gameProduct-btn">
