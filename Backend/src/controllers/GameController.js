@@ -10,7 +10,7 @@ router.get('/getgame/:gameid', GameService.getOneGame);
 router.get('/getgames/:userid',GameService.getUserGames);
 router.post('/win',GameService.editWin);
 router.post('/champion',GameService.editChampion);
-
+router.post('/edit', GameService.editGame);
 router.post('/delete',  GameService.deleteGame);
 
 export default router;

@@ -20,6 +20,19 @@ export const createImage = async (gameId, data) => {
   }
 };
 
+export const editImage = async (imageId, data) => {
+  try{
+    return await prisma.image.updateMany({
+      where: { id: imageId},
+      data: {
+        name: data.name,
+      }
+    })
+  } catch(err) {
+    console.error(err);
+  }
+} 
+
 export const deleteImage = async imageId => {
   try {
     return await prisma.image.delete({
@@ -31,3 +44,4 @@ export const deleteImage = async imageId => {
     console.error(err);
   }
 };
+

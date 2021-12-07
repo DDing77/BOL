@@ -132,3 +132,17 @@ export const updateChampion = async image => {
     console.error(err);
   }
 };
+
+export const editGame = async (gameId,data) => {
+  try{
+    return await prisma.game.updateMany({
+      where: { id: gameId},
+      data: {
+        title: data.title,
+        description: data.description,
+      }
+    })
+  } catch(err) {
+    console.error(err);
+  }
+}

@@ -95,6 +95,41 @@ export const getOneGame = async (req, res, next) => {
   }
 };
 
+// 게임 수정
+export const editGame = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const game = req.body.gameId;
+    const image = req.body.imageId;
+    if (game) {
+      const data = {
+        title: req.body.title,
+        description: req.body.description,
+      };
+      const editedGame = await GameRepository.editGame(parseInt(game), data);
+      if (!editedGame) {
+        res.send('게임 수정 실패');
+      } else {
+        res.status(200).send('게임 수정 성공');
+      }
+    }
+    if (image) {
+      const data = {
+        name: req.body.name,
+      };
+      const editedImage = await ImageRepository.editImage(parseInt(image), data);
+      if (!editedImage) {
+        res.send('이미지 수정 실패');
+      } else {
+        res.status(200).send('이미지 수정 성공');
+      }
+    }
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
 // 승리 요청
 export const editWin = async (req, res, next) => {
   try {
