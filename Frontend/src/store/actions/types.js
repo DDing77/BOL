@@ -5,8 +5,9 @@ export const LOGOUT_USER = "logout_user";
 export const LOGIN_CHECK = "login_check";
 
 // game_type
-export const GET_ALL_GAME="get_all_game";
-export const GET_GAME="get_game";
+export const GET_ALL_GAME = "get_all_game";
+export const GET_USER_GAME = "get_user_game";
+export const GET_GAME = "get_game";
 
 export const START_GAME = "start_game";
 export const GAME_RESET = "game_reset";
