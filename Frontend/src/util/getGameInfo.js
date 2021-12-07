@@ -18,10 +18,10 @@ export const getGame = async (gameId) => {
   return request;
 };
 
-// 특정 유저 게임 정보 다가져옴
+// 특정 유저의 게임 정보 다가져옴
 export const getUserGames = async (userId) => {
   const request = await axios
-    .get(`/api/games/getusergames/${userId}`)
+    .get(`/api/games/getgames/${userId}`)
     .then((response) => response.data);
 
     return request;
