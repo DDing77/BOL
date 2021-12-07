@@ -3,7 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import * as UserController from "../auth/controller/userController";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faUserAlt, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignInAlt,
+  faUserAlt,
+  faPlusSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import "../style/mainHeader.css";
 export default function MainHeader() {
   const dispatch = useDispatch();
@@ -20,18 +24,40 @@ export default function MainHeader() {
             LOB
           </Link>
         </a>
-        <button>
-          <Link className="nav-add-link" to="/make">
-            이상형 월드컵 만들기
-            <FontAwesomeIcon icon={faPlusSquare} style={{paddingLeft:"7px"}}/>
-          </Link>
-        </button>
+        <div>
+          <button>
+            <Link className="nav-add-link" to="/make">
+              이상형 월드컵 만들기
+              <FontAwesomeIcon
+                icon={faPlusSquare}
+                style={{ paddingLeft: "7px" }}
+              />
+            </Link>
+            </button>
+            
+            {user.isLogin ? (
+              <button>
+              <Link className="nav-add-link" to={`/user/${user.user.id}`}>
+                나의 게임 리스트
+                <FontAwesomeIcon
+                  icon={faPlusSquare}
+                  style={{ paddingLeft: "7px" }}
+                />
+              </Link>
+              </button>
+            ) : (
+              ""
+            )}
+        </div>
       </div>
       {!user.isLogin ? (
-        <div  className="nav-user-container">
+        <div className="nav-user-container">
           <button>
             <Link className="nav-sign" to="/login">
-              <FontAwesomeIcon icon={faSignInAlt} style={{paddingRight:"7px"}}/>
+              <FontAwesomeIcon
+                icon={faSignInAlt}
+                style={{ paddingRight: "7px" }}
+              />
               Login
             </Link>
           </button>
@@ -39,11 +65,17 @@ export default function MainHeader() {
       ) : (
         <div className="nav-user-container">
           <div className="nav-user">
-          {user.user.name}님
-          <FontAwesomeIcon icon={faUserAlt} style={{paddingLeft:"7px"}}/>
+            {user.user.name}님
+            <FontAwesomeIcon icon={faUserAlt} style={{ paddingLeft: "7px" }} />
           </div>
-          <button className="nav-sign" onClick={() => UserController.Logout(dispatch, navigate)}>
-          <FontAwesomeIcon icon={faSignInAlt} style={{paddingRight:"7px"}}/>
+          <button
+            className="nav-sign"
+            onClick={() => UserController.Logout(dispatch, navigate)}
+          >
+            <FontAwesomeIcon
+              icon={faSignInAlt}
+              style={{ paddingRight: "7px" }}
+            />
             Logout
           </button>
         </div>
