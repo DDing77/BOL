@@ -41,6 +41,19 @@ export const getAllGames = async (req, res, next) => {
   }
 };
 
+// 특정 유저 모든 게임 정보 요청
+export const getUserGames = async (req, res, next) => {
+  try {
+    console.log(req.params);
+    const userId = parseInt(req.params.userid);
+    const games = await GameRepository.getUserGames(userId);
+    return res.status(200).send(games);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
 // 특정 게임 정보 요청
 export const getOneGame = async (req, res, next) => {
   try {

@@ -52,6 +52,26 @@ export const getAllGames = async () => {
   }
 };
 
+export const getUserGames = async userId => {
+  try {
+    return await prisma.game.findMany({
+      where: {
+        userId: userId,
+      },
+      include: {
+        author: {
+          select: {
+            name: true,
+          },
+        },
+        images: true,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const getOneGame = async gameId => {
   try {
     return await prisma.game.findUnique({
