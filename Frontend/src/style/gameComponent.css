@@ -71,11 +71,26 @@
   width: 50%;
   height: 100%;
 }
-
+.btn-delete {
+  font-weight: 700;
+  font-size: large;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+  color: rgb(231, 42, 42);
+}
 .start {
   color: rgb(231, 42, 42);
   font-size: 1rem;
   font-weight: 1000;
+}
+.eidt{
+  font-weight: 700;
+  font-size: large;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
 }
 
 .rank {
