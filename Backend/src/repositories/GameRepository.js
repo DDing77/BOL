@@ -21,6 +21,14 @@ export const createGame = async (userId, data) => {
   }
 };
 
+export const deleteGame = async (gameId) => {
+  try{
+    return await prisma.$queryRaw`DELETE FROM games WHERE id = ${gameId};`
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // export const updateGame = async (gameid, data) => {
 //   try {
 //     return await prisma.game.update({
@@ -56,7 +64,7 @@ export const getUserGames = async userId => {
   try {
     return await prisma.game.findMany({
       where: {
-        userId: userId,
+        userId: parseInt(userId),
       },
       include: {
         author: {

@@ -12,8 +12,20 @@ export const createImage = async (gameId, data) => {
           connect: {
             id: gameId,
           },
-        }
-      }
+        },
+      },
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const deleteImage = async imageId => {
+  try {
+    return await prisma.image.delete({
+      where: {
+        id : imageId,
+      },
     });
   } catch (err) {
     console.error(err);

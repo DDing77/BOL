@@ -17,13 +17,41 @@ export const AddGame = async (req, res, next) => {
     }
 
     let images;
-    images =  req.files.map( async element => {
+    images = req.files.map(async element => {
       console.log('매핑시작');
       console.log(element);
       await ImageRepository.createImage(game.id, element);
     });
-    
+
     return res.status(200).send(images);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
+// 게임 삭제
+export const deleteGame = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const game = await GameRepository.getOneGame(parseInt(req.body.gameId));
+    console.log(game);
+
+    await game.images.forEach(element => {
+      console.log(element.path);
+      // 폴더에서 이미지 삭제
+      fs.unlinkSync(__dirname + '/../../' + element.path);
+    });
+
+    // 게임 삭제
+    await GameRepository.deleteGame(parseInt(req.body.gameId));
+
+    const toDelete = await GameRepository.getOneGame(parseInt(req.body.gameId));
+    console.log(toDelete);
+    if (toDelete) {
+      return res.send('게임 삭제도중 오류가 발생하였습니다.');
+    }
+    return res.status(200).send('게임을 삭제하였습니다.');
   } catch (err) {
     console.error(err);
     next(err);
@@ -67,30 +95,30 @@ export const getOneGame = async (req, res, next) => {
   }
 };
 
-// 승리 요청 
-export const editWin = async (req,res,next) => {
-  try{
+// 승리 요청
+export const editWin = async (req, res, next) => {
+  try {
     const image = req.body.imageId;
     const editedWin = await GameRepository.updateWin(parseInt(image));
-    if(!editedWin) {
-      res.send("승리횟수 증가 시도 오류.");
+    if (!editedWin) {
+      res.send('승리횟수 증가 시도 오류.');
     } else {
-      res.status(200).send("승리횟수 증가 성공");
+      res.status(200).send('승리횟수 증가 성공');
     }
   } catch (err) {
     console.error(err);
     next(err);
   }
 };
-// 우승, 승리 요청 
-export const editChampion = async (req,res,next) => {
-  try{
+// 우승, 승리 요청
+export const editChampion = async (req, res, next) => {
+  try {
     const image = req.body.imageId;
     const editedChampion = await GameRepository.updateChampion(parseInt(image));
-    if(!editedChampion) {
-      res.send("우승, 승리횟수 증가 시도 오류.");
+    if (!editedChampion) {
+      res.send('우승, 승리횟수 증가 시도 오류.');
     } else {
-      res.status(200).send("우승, 승리횟수 증가 성공");
+      res.status(200).send('우승, 승리횟수 증가 성공');
     }
   } catch (err) {
     console.error(err);

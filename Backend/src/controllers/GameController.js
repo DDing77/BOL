@@ -11,4 +11,6 @@ router.get('/getgames/:userid',GameService.getUserGames);
 router.post('/win',GameService.editWin);
 router.post('/champion',GameService.editChampion);
 
+router.post('/delete',  GameService.deleteGame);
+
 export default router;
