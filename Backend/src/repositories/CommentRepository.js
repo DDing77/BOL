@@ -15,7 +15,7 @@ export const createComment = async (userId, data) => {
         },
         game: {
           connect: {
-            id: data.gameId,
+            id: parseInt(data.gameId),
           },
         },
       },
