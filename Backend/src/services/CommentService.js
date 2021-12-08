@@ -2,14 +2,15 @@ import * as CommentRepository from '../repositories/CommentRepository';
 
 export const createComment = async (req, res, next) => {
   try {
-    // console.log(req.session.passport);
+    console.log(req.session.passport);
     console.log(req.body);
-    // const currentUser = req.session.passport.user;
-    const comment = await CommentRepository.createComment(1, req.body); // 1을 currentUser로 변경
+    const currentUser = req.session.passport.user.id;
+    const comment = await CommentRepository.createComment(currentUser, req.body);
 
     if (!comment) {
       return res.send('댓글 생성 도중 오류가 발생하였습니다.');
     }
+    console.log(comment);
     return res.status(200).send(comment);
   } catch (err) {
     console.error(err);
@@ -48,6 +49,7 @@ export const deleteComment = async (req, res, next) => {
 
 export const editeComment = async (req, res, next) => {
   try {
+    console.log(req.body)
     console.log(req.body.content);
     console.log(req.params);
     const editedComment = CommentRepository.editeComment(parseInt(req.params.commentid), req.body.content);
