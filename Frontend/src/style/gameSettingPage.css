@@ -23,26 +23,16 @@
   }
   
   
-  /* 헤더 */
-  table.rank-table thead {
-    text-align: left;
-  }
-  
-  th.thead_rank {
+  헤더
+  th.thead_setting_rank {
     width: 10%;
   }
   
-  th.thead_img {
+  th.thead_setting_img {
     width: 20%;
   }
-  th.thead_name {
+  th.thead_setting_name {
     width: 45%;
-  }
-  th.thead_champion {
-    width: 16.5%;
-  }
-  th.thead_win {
-    width: 16.5%;
   }
   /* 헤더 */
   

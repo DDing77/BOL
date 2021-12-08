@@ -114,7 +114,7 @@ export default function GameMakePage() {
           </div>
           <div className="setting-table-container">
             <table className="setting-table-section">
-              <thead>
+              <thead className="setting-table-thead">
                 <tr>
                   <th className="thead_rank">번호</th>
                   <th className="thead_img">이미지</th>
