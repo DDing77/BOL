@@ -1,16 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import * as CommentAction from "../store/actions/comment_action";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { faWindowRestore } from "@fortawesome/free-solid-svg-icons";
+import "../style/comment.css";
 
 export default function CommentForm() {
   const { gameId } = useParams();
-  const navigate = useNavigate();
   const userState = useSelector((store) => store.user);
   console.log(userState);
   const commentState = useSelector((store) => store.comment);
@@ -43,16 +41,16 @@ export default function CommentForm() {
   return (
     <div className="commentForm-container">
       <form className="commentForm-section" onSubmit={handleSubmit(submitForm)}>
-        <input
+        <input className="commentForm-input"
           name="comment"
           type="text"
           placeholder="댓글을 입력하세요"
           {...register("Content")}
         />
+        <button className="commentForm-btn" type="submit">등록</button>
         <span style={{ color: "red" }}>
-          {errors.Content && "텍스트를 입력하세요."}
+          {errors.Content && "입력하지 않았거나 텍스트의 길이가 깁니다."}
         </span>
-        <button type="submit">등록</button>
       </form>
     </div>
   );
