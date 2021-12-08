@@ -25,3 +25,9 @@ export const ROUND4_1 = "round4_1";
 export const ROUND4_2 = "round4_2";
 
 export const ROUND_FINAL = "round_final";
+
+// comment_type
+export const GET_COMMENT = "get_comment";
+export const CREATE_COMMENT = "create_comment";
+export const DELETE_COMMENT = "delete_comment";
+export const EDITE_COMMENT = "edite_comment";
