@@ -28,6 +28,11 @@ const commentReducer = (state = commentState, action) => {
         ...state,
         comments: action.payload.comments,
       };
+    case EDITE_COMMENT:
+      return {
+        ...state,
+        comments: action.payload.comments,
+      }
     default:
       return state;
   }

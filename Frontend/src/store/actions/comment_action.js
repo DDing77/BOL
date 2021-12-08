@@ -69,3 +69,28 @@ export const deleteComment = async (body) => {
     payload: request,
   };
 };
+
+// 댓글 수정
+export const editeComment = async (body) => {
+  console.log(body);
+  const edited = await axios
+    .post(`/api/comments/edite/${body.commentId}`,body)
+    .then((response) => response.data);
+    console.log(edited);
+
+    const comments = await axios
+    .get(`/api/comments/${body.gameId}`)
+    .then((response) => response.data);
+  console.log(comments);
+
+  const request = {
+    comments: comments,
+  };
+
+  alert("댓글을 수정하였습니다.");
+
+  return {
+    type: EDITE_COMMENT,
+    payload: request,
+  };
+};

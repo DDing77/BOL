@@ -65,7 +65,9 @@ export default function Comment() {
         </div>
         {isMyComment(element) ? (
           <div className="comment-btn-box">
-            <button className="comment-btn">수정</button>
+            <button className="comment-btn" onClick={() => {
+                CommenteSetting.editeComment(dispatch, element.id, gameId);
+              }}>수정</button>
             <button
               className="comment-btn"
               onClick={() => {

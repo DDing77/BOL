@@ -11,15 +11,20 @@ export const deleteComment = async (dispatch, commentId, gameId) => {
   };
 
   dispatch(CommentAction.deleteComment(body));
-
 };
 
-export const editeImage = async (commentId, data) => {
+export const editeComment = async (dispatch, commentId, gameId) => {
+  const inputValue = prompt();
   let body = {
-    content: data.content,
+    commentId: commentId,
+    gameId: gameId,
+    content: inputValue,
   };
-  const request = await axios
-    .post(`/api/comments/edite/${commentId}`, body)
-    .then((response) => response.data);
-  console.log(request);
+
+  dispatch(CommentAction.editeComment(body));
+
+  //   const request = await axios
+  //     .post(`/api/comments/edite/${commentId}`, body)
+  //     .then((response) => response.data);
+  //   console.log(request);
 };
