@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as CommentAction from "../store/actions/comment_action";
 import * as GetGame from "../util/getGameInfo";
 import Comment from "../components/comment";
+import Footer from "../components/footer";
 import GameRank from "../components/gameRank";
 import Pagination from "../util/pagination";
 import "../style/gameBoardPage.css";
@@ -84,6 +85,7 @@ export default function GameBoardPage() {
         "데이터없음"
       )}
      <Comment/>
+     <footer><Footer/></footer>
     </div>
   );
 }
