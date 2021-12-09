@@ -16,6 +16,7 @@ import GamePage from "./page/gamePage";
 import GameBoardPage from "./page/gameBoardPage";
 import MyGamePage from "./page/myGamePage";
 import GameSettingPage from "./page/gameSettingPage";
+import GameResultPage from "./page/gameResultPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -97,6 +98,15 @@ function App() {
           element={
             <PrivateRoute>
               <GameSettingPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/game/result/:gameId"
+          element={
+            <PrivateRoute>
+              <GameResultPage />
             </PrivateRoute>
           }
         />
