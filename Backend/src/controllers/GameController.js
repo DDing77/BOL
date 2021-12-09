@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/', AuthHander.isLoggined, ImageHandler, GameService.AddGame);
 router.get('/allgames', GameService.getAllGames);
-router.get('/getgame/:gameid', AuthHander.isLoggined, GameService.getOneGame);
+router.get('/getgame/:gameid', GameService.getOneGame);
 router.get('/getgames/:userid', AuthHander.isLoggined, GameService.getUserGames);
 router.post('/win',AuthHander.isLoggined, GameService.editWin);
 router.post('/champion', AuthHander.isLoggined,GameService.editChampion);
