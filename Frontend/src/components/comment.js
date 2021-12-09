@@ -86,7 +86,7 @@ export default function Comment() {
   return (
     <div style={{ backgroundColor: "white" }}>
         <h1 className="comment-info">댓글 리스트</h1>
-      <CommentForm />
+        {userState.isLogin? <CommentForm /> : ""}
       {commentState.comments.length > 0 ? rederComments() : "댓글 없음"}
     </div>
   );
