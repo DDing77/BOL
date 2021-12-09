@@ -10,10 +10,11 @@ export default function MainPage() {
 
   return (
     <>
-      <div className="body-container" >
+      <div className="body-container" style={{minHeight:"80vh",width: "100%"}}>
         <GameComponent />
       </div>
-        <Footer/>
+      <footer><Footer/></footer>
+        
     </>
   );
 }

@@ -1,13 +1,13 @@
 .gameComponent {
   display: flex;
   flex-flow: wrap;
-  /* justify-content: space-evenly; */
 }
 
 .gameComponent-container {
   padding: 0.5rem;
-  width: 20%;
-  height: 20rem;
+  min-width: 300px;
+  width: 19%;
+  height: 25rem;
   box-shadow: 1px 1px 1px 1px rgb(211, 208, 208);
 }
 
@@ -44,6 +44,15 @@
 }
 
 .gameProduct-description {
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 0.7rem;
+  height: 50%;
+}
+
+.gameProduct-author {
+  color: rgb(102, 102, 107);
+  font-size: 14px;
   height: 50%;
 }
 
@@ -62,11 +71,26 @@
   width: 50%;
   height: 100%;
 }
-
+.btn-delete {
+  font-weight: 700;
+  font-size: large;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+  color: rgb(231, 42, 42);
+}
 .start {
   color: rgb(231, 42, 42);
   font-size: 1rem;
   font-weight: 1000;
+}
+.eidt{
+  font-weight: 700;
+  font-size: large;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
 }
 
 .rank {

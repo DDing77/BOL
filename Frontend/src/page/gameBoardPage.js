@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as CommentAction from "../store/actions/comment_action";
 import * as GetGame from "../util/getGameInfo";
+import Comment from "../components/comment";
+import Footer from "../components/footer";
 import GameRank from "../components/gameRank";
 import Pagination from "../util/pagination";
 import "../style/gameBoardPage.css";
@@ -10,8 +14,9 @@ export default function GameBoardPage() {
   const [gameInfo, setGameInfo] = useState();
   // const [currentPage, setCurrentPage] = useState(1);
   // const [imagePerPage] = useState(10);
-
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(CommentAction.getComment(gameId));
     const get = async () => {
       const games = await GetGame.getGame(gameId);
       console.log(games.images);
@@ -79,7 +84,8 @@ export default function GameBoardPage() {
       ) : (
         "데이터없음"
       )}
-      <div>댓글</div>
+     <Comment/>
+     <footer><Footer/></footer>
     </div>
   );
 }

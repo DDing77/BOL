@@ -1,29 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import * as GetGame from "../util/getGameInfo";
-import {getAllGame} from "../store/actions/game_action";
+import * as GameSetting from "../util/gameSetting";
+import { getUserGames } from "../store/actions/game_action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faListOl } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import "../style/gameComponent.css";
 
-export default function GameComponent(userId) {
-  //   // 모든 게임 불러오기
-  //   if (userId === null) {
+export default function MyGamePage() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const gameStore = useSelector((store) => store.game);
   console.log(gameStore);
+
+  const { userId } = useParams();
   const [gameInfo, setGameInfo] = useState();
-  console.log(gameInfo)
+  console.log(gameInfo);
+
   useEffect(() => {
-    dispatch(getAllGame())
+    dispatch(getUserGames(userId));
     const get = async () => {
-      const games = await GetGame.getAllGame();
+      const games = await GetGame.getUserGames(userId);
       setGameInfo(games);
     };
     get();
-    
   }, [dispatch]);
+
+  console.log(gameInfo);
+
+  const deleteGame = async (gameId) => {
+    console.log(userId);
+    let body = {
+      gameId: gameId,
+    };
+    await GameSetting.deleteGame(body);
+    dispatch(getUserGames());
+    navigate(`/`);
+  };
 
   const renderAllGameComponent = () =>
     gameInfo.map((content, index) => (
@@ -54,22 +68,23 @@ export default function GameComponent(userId) {
           </div>
           <div className="gameProduct-btn">
             <button className="btn-start">
-              <Link className="start" to={`/game/${content.id}`}>
+              <Link className="eidt" to={`/game/setting/${content.id}`}>
                 <FontAwesomeIcon
-                  icon={faPlay}
+                  icon={faEdit}
                   style={{ paddingRight: "7px" }}
                 />
-                게임시작하기
+                수정
               </Link>
             </button>
-            <button className="btn-rank">
-              <Link className="rank" to={`/rank/${content.id}`}>
-                <FontAwesomeIcon
-                  icon={faListOl}
-                  style={{ paddingRight: "7px" }}
-                />
-                랭킹보기
-              </Link>
+            <button
+              className="btn-delete"
+              onClick={() => deleteGame(content.id)}
+            >
+              <FontAwesomeIcon
+                icon={faTrashAlt}
+                style={{ paddingRight: "7px" }}
+              />
+              삭제
             </button>
           </div>
         </div>
@@ -77,11 +92,13 @@ export default function GameComponent(userId) {
     ));
 
   return (
-    <div className="gameComponent">
-      {gameInfo ? renderAllGameComponent() : "데이터 없음"}
+    <div>
+      <h1 style={{ textAlign: "center", backgroundColor: "wheat" }}>
+        나의 게임 리스트
+      </h1>
+      <div className="gameComponent">
+        {gameInfo ? renderAllGameComponent() : "로딩 중"}
+      </div>
     </div>
   );
-
-  // 유저의 게임 불러오기
-  //
 }

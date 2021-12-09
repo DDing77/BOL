@@ -26,28 +26,29 @@ model User {
 }
 
 model Game {
-  id          Int      @id @default(autoincrement())
-  title       String   @unique @db.VarChar(30)
-  description String   @unique@db.VarChar(30)
-  createAt    DateTime @default(now())
-  updateAt    DateTime @updatedAt
-  author      User     @relation(fields: [userId], references: [id])
+  id          Int       @id @default(autoincrement())
+  title       String    @unique @db.VarChar(30)
+  description String    @unique @db.VarChar(30)
+  createAt    DateTime  @default(now())
+  updateAt    DateTime  @updatedAt
+  author      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      Int
-  images      Image[]
+  images      Image[] 
+  comments    Comment[]
 
   @@map(name: "games")
 }
 
 model Image {
-  id           Int       @id @default(autoincrement())
-  name         String    @unique @db.VarChar(20)
-  path         String    @db.VarChar(50)
-  game         Game      @relation(fields: [gameId], references: [id])
-  gameId       Int
-  win          Int       @default(0)
-  champion     Int       @default(0)
-  createAt     DateTime  @default(now())
-  updateAt     DateTime? @updatedAt
+  id       Int       @id @default(autoincrement())
+  name     String    @unique @db.VarChar(20)
+  path     String    @db.VarChar(50)
+  game     Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  gameId   Int
+  win      Int       @default(0)
+  champion Int       @default(0)
+  createAt DateTime  @default(now())
+  updateAt DateTime? @updatedAt
 
   @@map("images")
 }
@@ -64,8 +65,10 @@ model Comment {
   content   String   @db.Text
   createAt  DateTime @default(now())
   updateAt  DateTime @updatedAt
-  commenter User     @relation(fields: [userId], references: [id])
+  commenter User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  gameId    Int
 
   @@map("comments")
 }

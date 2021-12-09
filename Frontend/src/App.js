@@ -14,6 +14,9 @@ import RegisterPage from "./page/registerPage";
 import GameMakePage from "./page/gameMakePage";
 import GamePage from "./page/gamePage";
 import GameBoardPage from "./page/gameBoardPage";
+import MyGamePage from "./page/myGamePage";
+import GameSettingPage from "./page/gameSettingPage";
+import GameResultPage from "./page/gameResultPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -77,6 +80,33 @@ function App() {
           element={
             <PrivateRoute>
               <GamePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/user/:userId"
+          element={
+            <PrivateRoute>
+              <MyGamePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/game/setting/:gameId"
+          element={
+            <PrivateRoute>
+              <GameSettingPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/game/result/:gameId"
+          element={
+            <PrivateRoute>
+              <GameResultPage />
             </PrivateRoute>
           }
         />

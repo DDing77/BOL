@@ -21,6 +21,14 @@ export const createGame = async (userId, data) => {
   }
 };
 
+export const deleteGame = async (gameId) => {
+  try{
+    return await prisma.$queryRaw`DELETE FROM games WHERE id = ${gameId};`
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // export const updateGame = async (gameid, data) => {
 //   try {
 //     return await prisma.game.update({
@@ -38,6 +46,26 @@ export const createGame = async (userId, data) => {
 export const getAllGames = async () => {
   try {
     return await prisma.game.findMany({
+      include: {
+        author: {
+          select: {
+            name: true,
+          },
+        },
+        images: true,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getUserGames = async userId => {
+  try {
+    return await prisma.game.findMany({
+      where: {
+        userId: parseInt(userId),
+      },
       include: {
         author: {
           select: {
@@ -104,3 +132,17 @@ export const updateChampion = async image => {
     console.error(err);
   }
 };
+
+export const editGame = async (gameId,data) => {
+  try{
+    return await prisma.game.updateMany({
+      where: { id: gameId},
+      data: {
+        title: data.title,
+        description: data.description,
+      }
+    })
+  } catch(err) {
+    console.error(err);
+  }
+}

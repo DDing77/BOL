@@ -5,8 +5,9 @@ export const LOGOUT_USER = "logout_user";
 export const LOGIN_CHECK = "login_check";
 
 // game_type
-export const GET_ALL_GAME="get_all_game";
-export const GET_GAME="get_game";
+export const GET_ALL_GAME = "get_all_game";
+export const GET_USER_GAME = "get_user_game";
+export const GET_GAME = "get_game";
 
 export const START_GAME = "start_game";
 export const GAME_RESET = "game_reset";
@@ -24,3 +25,9 @@ export const ROUND4_1 = "round4_1";
 export const ROUND4_2 = "round4_2";
 
 export const ROUND_FINAL = "round_final";
+
+// comment_type
+export const GET_COMMENT = "get_comment";
+export const CREATE_COMMENT = "create_comment";
+export const DELETE_COMMENT = "delete_comment";
+export const EDITE_COMMENT = "edite_comment";
